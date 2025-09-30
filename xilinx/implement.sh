@@ -1,19 +1,22 @@
-bender script vivado -t fpga -t rtl -t genesys2 > scripts/add_sources.genesys2.tcl
+# Bender script option vivado with target of fpga, rtl, genesys2 outputs it to scripts/add_sources.genesys2.tcl
+# bender script vivado -t fpga -t rtl -t genesys2 > scripts/add_sources.genesys2.tcl
+# Make a subdirectory build/genesys2.clkwiz if it doesn't already exists
 mkdir -p build/genesys2.clkwiz
+# Change directory to this newly created directory
 cd build/genesys2.clkwiz && \
-    vitis-2022.1 vivado -mode batch -log ../genesys2.clkwiz.log -jou ../genesys2.clkwiz.jou \
+    vivado -mode batch -log ../genesys2.clkwiz.log -jou ../genesys2.clkwiz.jou \
     -source ../../scripts/impl_ip.tcl \
     -tclargs genesys2 clkwiz \
     && cd ../..
 mkdir -p build/genesys2.vio
 cd build/genesys2.vio &&
-    vitis-2022.1 vivado -mode batch -log ../genesys2.vio.log -jou ../genesys2.vio.jou \
+    vivado -mode batch -log ../genesys2.vio.log -jou ../genesys2.vio.jou \
     -source ../../scripts/impl_ip.tcl \
     -tclargs genesys2 vio\
     && cd ../..
 mkdir -p build/genesys2.croc
 cd build/genesys2.croc && \
-    vitis-2022.1 vivado -mode batch -log ../croc.genesys2.log -jou ../croc.genesys2.jou \
+    vivado -mode batch -log ../croc.genesys2.log -jou ../croc.genesys2.jou \
     -source ../../scripts/impl_sys.tcl \
     -tclargs genesys2 croc \
     ../genesys2.clkwiz/out.xci \
