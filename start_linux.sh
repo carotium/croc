@@ -6,7 +6,7 @@
 # Authors:
 # - Philippe Sauter <phsauter@iis.ee.ethz.ch>
 
-env UID=$(id -u) GID=$(id -g) docker compose pull pulp-docker
+#env UID=$(id -u) GID=$(id -g) docker compose pull pulp-docker
 
 env UID=$(id -u) GID=$(id -g) docker compose run --rm \
   -e PS1="\[\033[01;32m\]osic:\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\] $" \
