@@ -12,8 +12,12 @@ set xilinx_root [file dirname [file dirname [file normalize [info script]]]]
 source ${xilinx_root}/scripts/common.tcl
 init_impl $xilinx_root $argc $argv
 
+#set_property source_mgmt_mode None [current_project]
+
 # Addtional args provide IPs
-read_ip [exec realpath {*}[lrange $argv 2 end]]
+#read_ip [exec realpath {*}[lrange $argv 2 end]]
+
+import_ip [exec realpath {*}[lrange $argv 2 end]]
 
 # Load constraints
 # import_files -fileset constrs_1 -norecurse ${xilinx_root}/src/${proj}.xdc
@@ -23,8 +27,11 @@ import_files -fileset constrs_1 -norecurse ${xilinx_root}/src/${board}.xdc
 source ${xilinx_root}/scripts/add_sources.${board}.tcl
 
 # Set top module
+
+set_property source_mgmt_mode None [current_project]
+
 set_property top ${proj}_xilinx [current_fileset]
-update_compile_order -fileset sources_1
+#update_compile_order -fileset sources_1
 
 # Set synthesis properties
 # TODO: investigate resource-affordable retiming
