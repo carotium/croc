@@ -7,13 +7,15 @@
 
 services:
   pulp-docker:
-    image: hpretl/iic-osic-tools:2025.07.pre1
+    image: iic-osic-tools-fix:0.1
     environment:
       - UID=${UID}
       - GID=${GID}
     user: "${UID}:${GID}"
     volumes:
       - ./:/fosic/designs/croc
+      - /net/jastreb/opt/Xilinx/:/net/jastreb/opt/Xilinx/
+      - ./xilinx/build/:/fosic/designs/croc/xilinx/build/
     stdin_open: true
     tty: true
     working_dir: /fosic/designs/croc
