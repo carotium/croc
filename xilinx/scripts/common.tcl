@@ -44,6 +44,9 @@ proc init_impl {xilinx_root argc argv} {
     file delete -force [glob -nocomplain ${project_root}/*]
     # Create project
     create_project $proj $project_root -force -part $fpart($board)
+
+    set_property source_mgmt_mode None [current_project]
+
     set_property board_part $bpart($board) [current_project]
 }
 
