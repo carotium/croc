@@ -50,10 +50,13 @@ module user_domain import user_pkg::*; import croc_pkg::*; #(
   sbr_obi_req_t user_error_obi_req;
   sbr_obi_rsp_t user_error_obi_rsp;
 
+  // Add here (like above)
+
   // Fanout into more readable signals
   assign user_error_obi_req              = all_user_sbr_obi_req[UserError];
   assign all_user_sbr_obi_rsp[UserError] = user_error_obi_rsp;
 
+  // Add here (like above)
 
   //-----------------------------------------------------------------------------------------------
   // Demultiplex to User Subordinates according to address map
@@ -114,5 +117,7 @@ module user_domain import user_pkg::*; import croc_pkg::*; #(
     .obi_req_i  ( user_error_obi_req ),
     .obi_rsp_o  ( user_error_obi_rsp )
   );
+
+  // Add here (kinda like above)
 
 endmodule
